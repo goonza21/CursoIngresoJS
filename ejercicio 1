@@ -1,0 +1,81 @@
+/*
+1)De 5  personas que ingresan al hospital se deben tomar y 
+validar los siguientes datos.
+nombre ,peso, sexo y edad.
+a)informar la cantidad de mujeres.
+b)la edad promedio en total.
+c)el hombre mas pesado.
+pedir datos por prompt y mostrar por document.write o console.log
+*/
+function mostrar()
+{
+	var nombre;
+	var peso;
+	var sexo;
+	var edad;
+	var contadorMujeres = 0;
+	var contadorHombres = 0;
+	var sumaAcumulada = 0;
+	var promedio = 0;
+	var contador = 0;
+	var pesoMax;
+	var nombreMax;
+    var primeraVez = true;
+	do {
+		do {
+		nombre=prompt("ingrese el nombre");
+	} while (!(isNaN(nombre)));	
+
+	
+do {
+	sexo=prompt("ingrese el sexo f o m");
+} while (sexo != "m" && sexo != "f");
+
+do {
+	edad=prompt("ingrese la edad");
+	edad=parseInt(edad);
+} while (isNaN(edad));
+
+do {
+	peso=prompt("ingrese el precio");
+	peso=parseInt(peso);
+} while (isNaN(peso) || peso < 0);
+if(sexo == "m"){
+
+contadorHombres++;
+
+if(primeraVez){
+primeraVez = false;
+pesoMax = peso;
+nombreMax = nombre;
+}
+else {
+	if(pesoMax < peso){
+		pesoMax = peso;
+nombreMax = nombre;
+	}
+}
+}	
+
+sumaAcumulada=sumaAcumulada+edad;
+
+if (sexo == "f"){
+	contadorMujeres++;
+}
+contador++;
+} 	while (contador < 5);
+
+promedio=sumaAcumulada/contador;
+
+
+if(contadorMujeres > 0){
+	document.write("la cantidad de mujeres es de" + contadorMujeres + "<br>");
+}
+
+document.write("la edad promediio total es " + promedio + "<br>");
+
+if(contadorHombres != 0 ){
+
+	document.write("el hombre con el peso maximo es " + nombreMax);
+}
+} 
