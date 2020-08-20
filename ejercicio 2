@@ -1,0 +1,96 @@
+/*
+2)De una compra debes ingresar una cantidad indeterminada de productos,
+ validando los siguientes datos:
+marca, precio, peso en kilogramos, tipo(sólido o líquido)
+a)informar el peso total de la compra.
+b)la marca del más caro de los líquidos
+c)la marca del más barato de los sólidos
+*/function mostrar()
+{
+	var marca;
+	var precio;
+	var kilogramos;
+	var tipo;
+	var respuesta;
+    var pesoTotal = 0;
+	var primeraVez = true;
+	var segundaVez = true;
+	var solidoBarato;
+	var liquidoCaro;
+	var marcaMin;
+	var marcaMax;
+	var contadorliquido = 0;
+	var contadorSolido = 0;
+
+
+do {
+	
+
+	do {
+		marca=prompt("ingrese la marca");
+	} while (!(isNaN(marca)));
+
+do {
+	precio=prompt("ingrese el precio");
+	precio=parseInt(precio)
+} while (isNaN(precio) || precio < 0);
+
+do {
+	kilogramos=prompt("ingrese el peso (en kilogramos)");
+	kilogramos=parseInt(kilogramos);
+} while (isNaN(kilogramos) || kilogramos < 0);
+
+do {
+	tipo=prompt("ingrese el tipo  (liquido o solido)");
+} while (tipo != "solido" && tipo != "liquido");
+
+  
+pesoTotal=pesoTotal+kilogramos;
+
+if( tipo == "solido"){
+	contadorSolido++;
+	if(primeraVez){
+	primeraVez = false;
+	solidoBarato=precio;
+		marcaMin=marca;
+	}
+	else  { 
+		if(solidoBarato > precio){
+		
+		solidoBarato=precio;
+		marcaMin=marca;
+		}
+	}}
+	if(tipo == "liquido"){
+		contadorliquido++;
+		if(segundaVez){
+	segundaVez = false;
+	liquidoCaro = precio;
+	marcaMax = marca;
+		}
+
+	else{
+		if(liquidoCaro < precio){
+		liquidoCaro = precio;
+	    marcaMax = marca;
+	}}
+	}
+
+  respuesta=prompt("¿desea ingresar otra vez?")
+  } while (respuesta == "si");
+
+
+  document.write(" el peso total de la compra es " + pesoTotal + "<br>");
+
+  if(contadorliquido != 0){
+
+  document.write("la marca del mas caro de los liquidos es " + marcaMax + "<br>");
+
+}
+
+if(contadorSolido != 0){
+
+document.write(" la marca mas barata de los solidos es " + marcaMin)
+
+}
+}
