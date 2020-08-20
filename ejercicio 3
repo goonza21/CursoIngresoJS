@@ -1,0 +1,103 @@
+/*
+3)Nos ingresan una cantidad indeterminada de estadías de  vacaciones, 
+validando los datos ingresados. 
+sexo del titular ,lugar ( “bariloche”, “cataratas” o “salta”),
+temporada(“otoño”,”invierno, “verano,”primavera”),
+cantidad de personas que viajan.
+informar:
+a)el lugar más elegido
+b)el sexo de titular que lleva más pasajeros.
+c)el promedio de personas por viaje,  que viajan en invierno
+*/
+function mostrar()
+{
+
+	var sexo;
+	var lugar;
+	var personas;
+	var temporada;
+	var contadorBariloche = 0;
+	var contadorCataratas = 0;
+	var contadorSalta = 0;
+	var personasMax = 0;
+	var sexoMax;
+	var vandera = true;
+	var contadorPersonas = 0;
+    var promedioViaje = 0;
+    var acumuladorInvierno = 0;
+    do {
+		
+	
+		do {
+			sexo = prompt("ingrese el sexo del titular");
+		} while (sexo != "f" && sexo != "m");
+	
+		do {
+			lugar = prompt ("ingrese el lugar bariloche, cataratas o salta");
+		} while (lugar!= "bariloche" && lugar!= "salta" && lugar!= "cataratas");
+	
+		do {
+			temporada = prompt ("ingrese la temporada invierno, otoño, verano, primavera");
+		} while (temporada!= "otoño" && temporada!= "invierno" && temporada!= "primavera" && temporada != "verano");
+	
+		do {
+		personas = prompt ("ingrese la cantidad de personas");
+		personas = parseInt (personas);
+		} while (isNaN (personas) || personas <= 0);
+
+		switch(lugar){
+        case "bariloche": contadorBariloche++;
+		break;
+		case "cataratas": contadorCataratas++;
+		break;
+		case "salta": contadorSalta++;
+		break;
+	}
+
+	if (vandera == true){
+		personasMax = personas
+		sexoMax = sexo
+		vandera = false;
+	} else{
+     if(personasMax < personas){
+		personasMax = personas;
+        sexoMax = sexo;
+	}
+ }
+ if(temporada == "invierno"){
+    acumuladorInvierno= acumuladorInvierno + personas;
+	contadorPersonas++;
+}
+ respuesta=prompt("desea volver a repetir?");
+
+ } while (respuesta == "si");
+
+   
+ if(contadorSalta == contadorBariloche && contadorSalta == contadorCataratas && contadorBariloche == contadorCataratas){
+
+	document.write("todos los lugares se eligieron de igual forma <br>")
+ }
+
+	if(contadorSalta > contadorBariloche && contadorSalta > contadorCataratas){
+		document.write(" el lugar mas elegido es salta <br>");
+	}
+
+	if(contadorBariloche > contadorSalta && contadorBariloche > contadorCataratas){
+		document.write(" el lugar mas elegido es bariloche <br>");
+	}
+
+
+    if(contadorCataratas > contadorBariloche && contadorCataratas > contadorSalta){
+		document.write(" el lugar mas elegido es cataratas <br>");
+	}
+    document.write("el sexo del titular que lleva mas personas es " + sexoMax + "<br>");
+
+   if(contadorPersonas == 0){
+
+	document.write("no viajaron personas en invierno" + "<br>");
+   }else{
+	promedioViaje=acumuladorInvierno/contadorPersonas;
+    promedioViaje=parseInt(promedioViaje);
+	document.write("el promedio de personas por viaje es " + promedioViaje);
+}
+}	
